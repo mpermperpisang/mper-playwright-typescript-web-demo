@@ -1,0 +1,28 @@
+{
+  "name": "mper-playwright-typescript-web-demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mpermperpisang/mper-playwright-typescript-web-demo.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mpermperpisang/mper-playwright-typescript-web-demo/issues"
+  },
+  "homepage": "https://github.com/mpermperpisang/mper-playwright-typescript-web-demo#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.55.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.2"
+  }
+}
