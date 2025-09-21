@@ -14,7 +14,7 @@ test('SauceDemo E2E - Successful Checkout', async ({ page }) => {
 
   await loginPage.goto();
   await loginPage.login('standard_user', 'secret_sauce');
-  await inventoryPage.assertOnPage();
+  await inventoryPage.assertOnInventoryPage();
 
   await inventoryPage.addBackpackToCart();
   await inventoryPage.goToCart();
