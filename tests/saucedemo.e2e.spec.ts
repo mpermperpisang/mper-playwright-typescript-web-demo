@@ -1,43 +1,30 @@
-import { test, expect } from '@playwright/test';
+import { test } from '@playwright/test';
+import { LoginPage } from '../pages/LoginPage';
+import { InventoryPage } from '../pages/InventoryPage';
+import { CartPage } from '../pages/CartPage';
+import { CheckoutPage } from '../pages/CheckoutPage';
+import { CheckoutCompletePage } from '../pages/CheckoutCompletePage';
 
-test('SauceDemo E2E - Login, Checkout, Payment', async ({ page }) => {
-  // 1. Go to login page
-  await page.goto('/');
+test('SauceDemo E2E - Successful Checkout', async ({ page }) => {
+  const loginPage = new LoginPage(page);
+  const inventoryPage = new InventoryPage(page);
+  const cartPage = new CartPage(page);
+  const checkoutPage = new CheckoutPage(page);
+  const completePage = new CheckoutCompletePage(page);
 
-  // Login with standard user
-  await page.fill('#user-name', 'standard_user');
-  await page.fill('#password', 'secret_sauce');
-  await page.click('#login-button');
+  await loginPage.goto();
+  await loginPage.login('standard_user', 'secret_sauce');
+  await inventoryPage.assertOnPage();
 
-  // Assert successful login by checking inventory page
-  await expect(page.locator('.title')).toHaveText('Products');
+  await inventoryPage.addBackpackToCart();
+  await inventoryPage.goToCart();
 
-  // 2. Add product to cart
-  await page.click('text=Sauce Labs Backpack');
-  await page.click('button:has-text("Add to cart")');
+  await cartPage.assertItemInCart('Sauce Labs Backpack');
+  await cartPage.checkout();
 
-  // Go to cart
-  await page.click('.shopping_cart_link');
-  await expect(page.locator('.inventory_item_name')).toHaveText('Sauce Labs Backpack');
+  await checkoutPage.fillForm('John', 'Doe', '12345');
+  await checkoutPage.assertOverview();
+  await checkoutPage.finish();
 
-  // 3. Checkout process
-  await page.click('#checkout');
-
-  // Fill checkout form
-  await page.fill('#first-name', 'John');
-  await page.fill('#last-name', 'Doe');
-  await page.fill('#postal-code', '12345');
-  await page.click('#continue');
-
-  // Assert checkout overview
-   await expect(
-    page.locator('.summary_info_label', { hasText: 'Payment Information' })
-  ).toBeVisible();
-
-  // 4. Finish payment
-  await page.click('#finish');
-
-  // 5. Assert confirmation
-    // 5. Assert confirmation
-  await expect(page.locator('.complete-header')).toHaveText(/thank you for your order!/i);
+  await completePage.assertThankYou();
 });

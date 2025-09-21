@@ -12,4 +12,8 @@ npm install -D @playwright/test typescript ts-node
 # Install browsers
 npx playwright install
 
-npx playwright init
+npx playwright test
+npx playwright test tests/saucedemo.e2e.spec.ts
+npx playwright test -g "Login failure"
+npx playwright test --headed
+npx playwright show-report
