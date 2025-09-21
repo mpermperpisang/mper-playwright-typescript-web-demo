@@ -7,9 +7,9 @@
     "test": "tests"
   },
   "scripts": {
-    "test": "playwright test",
-    "test:e2e": "playwright test tests/saucedemo.e2e.spec.ts --headed",
-    "test:negative": "playwright test tests/login-failure.spec.ts --headed",
+    "test:e2e": "playwright test",
+    "test:positive": "playwright test tests/positive --headed",
+    "test:negative": "playwright test tests/negative --headed",
     "test:all:headed": "playwright test --headed",
     "report": "playwright show-report"
   },

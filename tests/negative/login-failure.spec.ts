@@ -1,5 +1,5 @@
 import { test } from '@playwright/test';
-import { LoginPage } from '../pages/LoginPage';
+import { LoginPage } from '../../pages/LoginPage';
 
 test('SauceDemo - Login Failure', async ({ page }) => {
   const loginPage = new LoginPage(page);

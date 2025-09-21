@@ -1,9 +1,9 @@
 import { test } from '@playwright/test';
-import { LoginPage } from '../pages/LoginPage';
-import { InventoryPage } from '../pages/InventoryPage';
-import { CartPage } from '../pages/CartPage';
-import { CheckoutPage } from '../pages/CheckoutPage';
-import { CheckoutCompletePage } from '../pages/CheckoutCompletePage';
+import { LoginPage } from '../../pages/LoginPage';
+import { InventoryPage } from '../../pages/InventoryPage';
+import { CartPage } from '../../pages/CartPage';
+import { CheckoutPage } from '../../pages/CheckoutPage';
+import { CheckoutCompletePage } from '../../pages/CheckoutCompletePage';
 
 test('SauceDemo E2E - Successful Checkout', async ({ page }) => {
   const loginPage = new LoginPage(page);
